@@ -27,10 +27,10 @@
 	</bean>
 
 	<bean id="mysqlDS" class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="username" value="root"/>
-		<property name="password" value=""/>
-		<property name="url" value="jdbc:mysql://localhost/ingresso?createDatabaseIfNotExist=true&amp;useSSL=false"/>
-		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="username" value="postgres"/>
+		<property name="password" value="123"/>
+		<property name="url" value="jdbc:postgresql://localhost:6060/fj22?createDatabaseIfNotExist=true&amp;useSSL=false"/>
+		<property name="driverClassName" value="org.postgresql"/>
 	</bean>
 	
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
