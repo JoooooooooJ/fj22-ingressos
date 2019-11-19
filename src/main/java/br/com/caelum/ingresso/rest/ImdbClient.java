@@ -13,7 +13,7 @@ import java.util.Optional;
 public class ImdbClient {
     private Logger logger = Logger.getLogger(ImdbClient.class);
 
-    public Optional<DetalhesDoFilme> request(Filme filme){
+    public  <T> Optional<T>  request(Filme filme, Class<T> tClass){
         RestTemplate client = new RestTemplate();
 
         String titulo = filme.getNome().toLowerCase().replace(" ","+");
@@ -21,8 +21,7 @@ public class ImdbClient {
         String url = String.format("http://www.omdbapi.com/?apikey=f17c0176&t=%s", titulo);
 
         try {
-            DetalhesDoFilme detalhes = client.getForObject(url, DetalhesDoFilme.class);
-            return Optional.of(detalhes);
+            return Optional.of(client.getForObject(url, tClass));
         }catch (RestClientException e){
             logger.error(e.getMessage(), e);
             return Optional.empty();

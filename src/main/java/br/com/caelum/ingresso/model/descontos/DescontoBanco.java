@@ -8,6 +8,12 @@ public class DescontoBanco implements Desconto{
     public BigDecimal aplicardescontoSobre(BigDecimal precoOriginal) {
         return precoOriginal.subtract(trindaPorCentro(precoOriginal));
     }
+
+    @Override
+    public String getDescricao() {
+        return "Desconto Banco";
+    }
+
     public BigDecimal trindaPorCentro(BigDecimal precoOriginal){
         return precoOriginal.multiply(new BigDecimal("0.3"));
     }

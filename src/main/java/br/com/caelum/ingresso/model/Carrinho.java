@@ -1,4 +1,4 @@
 package br.com.caelum.ingresso.model;
 
-public class imagemCapa {
+public class Carrinho {
 }
