@@ -29,7 +29,6 @@ public class Sessao {
 	@OneToMany(mappedBy = "sessao", fetch = FetchType.EAGER)
 	private Set<Ingresso> ingressos = new HashSet<>();
 
-	
 	 /**
      * @deprecated hibernate only
      */	

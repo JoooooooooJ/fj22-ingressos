@@ -2,7 +2,9 @@ package br.com.caelum.ingresso.controller;
 
 import javax.validation.Valid;
 
+import br.com.caelum.ingresso.model.Carrinho;
 import br.com.caelum.ingresso.model.ImagemCapa;
+import br.com.caelum.ingresso.model.TipoDeIngresso;
 import br.com.caelum.ingresso.rest.ImdbClient;
 import br.com.caelum.ingresso.validacao.GerenciadorDeSessao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,9 @@ public class SessaoController {
 
 	@Autowired
 	private ImdbClient client;
+
+	@Autowired
+	private Carrinho carrinho;
 	
 	@GetMapping("/admin/sessao")
 	public ModelAndView form(@RequestParam("salaId") Integer salaId, SessaoForm form) {
@@ -77,7 +82,9 @@ public class SessaoController {
 		Optional<ImagemCapa> capa = client.request(sessao.getFilme(), ImagemCapa.class);
 
 		mnv.addObject("sessao",sessao);
+		mnv.addObject("carrinho", carrinho);
 		mnv.addObject("imagemCapa", capa.orElse(new ImagemCapa()));
+		mnv.addObject("tiposDeIngresso", TipoDeIngresso.values());
 		return mnv;
 	}
 

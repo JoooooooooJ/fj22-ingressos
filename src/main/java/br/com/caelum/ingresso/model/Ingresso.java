@@ -5,7 +5,9 @@ import br.com.caelum.ingresso.model.descontos.Desconto;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
 public class Ingresso {
+
     @Id
     @GeneratedValue
     private Integer id;
@@ -13,27 +15,28 @@ public class Ingresso {
     @ManyToOne
     private Sessao sessao;
 
-    private BigDecimal preco;
-
     @ManyToOne
     private Lugar lugar;
+
+    private BigDecimal preco;
 
     @Enumerated(EnumType.STRING)
     private TipoDeIngresso tipoDeIngresso;
 
     /**
-     * @deprecated hibernate only
-     */
+     * @deprecated hibernate only*/
+
     public Ingresso(){
 
     }
 
-    public Ingresso(Sessao sessao, TipoDeIngresso tipodeDesconto, Lugar lugar) {
+    public Ingresso(Sessao sessao, TipoDeIngresso tipoDeIngresso, Lugar lugar) {
         this.sessao = sessao;
-        this.tipoDeIngresso = tipodeDesconto;
-        this.preco = tipodeDesconto.aplicaDesconto(sessao.getPreco());
+        this.tipoDeIngresso = tipoDeIngresso;
+        this.preco = this.tipoDeIngresso.aplicaDesconto(sessao.getPreco());
         this.lugar = lugar;
     }
+
 
     public Sessao getSessao() {
         return sessao;
