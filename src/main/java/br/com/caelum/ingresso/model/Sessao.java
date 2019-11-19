@@ -8,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-
-
 @Entity
 public class Sessao {
 	
@@ -33,7 +31,6 @@ public class Sessao {
 	public Sessao() {
 		
 	}
-
 	public Sessao(LocalTime horario, Sala sala, Filme filme) {
 		this.horario = horario;
 		this.sala = sala;
@@ -41,6 +38,9 @@ public class Sessao {
 		this.preco = sala.getPreco().add(filme.getPreco());
 	}
 
+	public LocalTime getHorarioTermino(){
+		return this.horario.plusMinutes(filme.getDuracao().toMinutes());
+	}
 	public void setId(Integer id) {
 		this.id = id;
 	}

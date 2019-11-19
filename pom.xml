@@ -8,21 +8,16 @@
     <artifactId>ingresso</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-    
-    <developers>	
-    	<developer>
-    		<name>Joao Pedro</name>
-    		<email>joaopedrofernandes22@gmail.com</email>
-    	</developer>
-    </developers>
-    
+
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>    
-    
+    </properties>
+
+
     <dependencies>
 
         <dependency>
@@ -86,17 +81,17 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-             
-         <dependency>
-             <groupId>javax.servlet.jsp</groupId>
-             <artifactId>javax.servlet.jsp-api</artifactId>
-             <version>2.3.1</version>
-         </dependency>             
+
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>2.3.1</version>
+        </dependency>
 
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.4.4.Final</version>
+            <version>5.2.5.Final</version>
         </dependency>
 
         <dependency>
@@ -106,10 +101,10 @@
         </dependency>
 
         <dependency>
-		    <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.2.1</version>
-		</dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.17</version>
+        </dependency>
 
         <dependency>
             <groupId>commons-dbcp</groupId>
@@ -128,11 +123,11 @@
             <artifactId>jaxb-api</artifactId>
             <version>2.2.12</version>
         </dependency>
-        
+
         <dependency>
-        	<groupId>junit</groupId>
-		    <artifactId>junit</artifactId>
-		    <version>4.12</version>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13-rc-1</version>
         </dependency>
     </dependencies>
     <build>
@@ -153,7 +148,7 @@
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.4.0.v20161208</version>
+                <version>9.4.19.v20190610</version>
                 <configuration>
                     <scanIntervalSeconds>10</scanIntervalSeconds>
                 </configuration>
