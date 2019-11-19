@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.caelum.ingresso.dao.FilmeDao;
@@ -63,5 +61,12 @@ public class SessaoController {
 			return new ModelAndView("redirect:/admin/sala/"+form.getSalaId()+"/sessoes");
 		}
 		return form(form.getSalaId(), form);
+	}
+
+	@DeleteMapping("/admin/sessao/{id}")
+	@ResponseBody
+	@Transactional
+	public void delete(@PathVariable("id") Integer id){
+		sessaoDao.delete(id);
 	}
 }

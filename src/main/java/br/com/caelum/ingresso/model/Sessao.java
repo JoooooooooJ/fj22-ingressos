@@ -31,6 +31,7 @@ public class Sessao {
 	public Sessao() {
 		
 	}
+
 	public Sessao(LocalTime horario, Sala sala, Filme filme) {
 		this.horario = horario;
 		this.sala = sala;
@@ -41,6 +42,7 @@ public class Sessao {
 	public LocalTime getHorarioTermino(){
 		return this.horario.plusMinutes(filme.getDuracao().toMinutes());
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -75,5 +77,9 @@ public class Sessao {
 
 	public BigDecimal getPreco() {
 		return preco;
+	}
+
+	public void setPreco(BigDecimal preco) {
+		this.preco = preco;
 	}
 }
