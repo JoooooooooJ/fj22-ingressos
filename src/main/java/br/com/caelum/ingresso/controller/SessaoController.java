@@ -60,8 +60,6 @@ public class SessaoController {
 	public ModelAndView salva(@Valid SessaoForm form, BindingResult result) {
 		
 		if(result.hasErrors()) return form(form.getSalaId(), form);
-		
-		ModelAndView mnv;
 		Sessao sessao = form.toSessao(salaDao, filmeDao);
 
 		List<Sessao> sessoes = sessaoDao.buscaSessoesDaSala(sessao.getSala());
@@ -74,18 +72,20 @@ public class SessaoController {
 		return form(form.getSalaId(), form);
 	}
 
-	@GetMapping(value="/sessao/{id}/lugares")
+	@GetMapping("/sessao/{id}/lugares")
 	public ModelAndView lugaresNaSessao(@PathVariable("id") Integer sessaoId){
-		ModelAndView mnv = new ModelAndView("sessao/lugares");
+		ModelAndView modelAndView = new ModelAndView("sessao/lugares");
 
 		Sessao sessao = sessaoDao.findOne(sessaoId);
-		Optional<ImagemCapa> capa = client.request(sessao.getFilme(), ImagemCapa.class);
 
-		mnv.addObject("sessao",sessao);
-		mnv.addObject("carrinho", carrinho);
-		mnv.addObject("imagemCapa", capa.orElse(new ImagemCapa()));
-		mnv.addObject("tiposDeIngresso", TipoDeIngresso.values());
-		return mnv;
+		Optional<ImagemCapa> imagemCapa = client.request(sessao.getFilme(), ImagemCapa.class);
+
+		modelAndView.addObject("sessao", sessao);
+		modelAndView.addObject("carrinho", carrinho);
+		modelAndView.addObject("imagemCapa", imagemCapa.orElse(new ImagemCapa()));
+		modelAndView.addObject("tiposDeIngressos", TipoDeIngresso.values());
+
+		return modelAndView;
 	}
 
 	@DeleteMapping("/admin/sessao/{id}")

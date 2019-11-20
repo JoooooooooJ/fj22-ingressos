@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CarrinhoForm {
+public class CarrinhoForm{
 
     private List<Ingresso> ingressos = new ArrayList<>();
 
@@ -24,13 +24,11 @@ public class CarrinhoForm {
     }
 
     public List<Ingresso> toIngressos(SessaoDao sessaoDao, LugarDao lugarDao){
-        return this.ingressos
-                .stream()
-                .map(ingresso -> {
-                    Sessao sessao = sessaoDao.findOne(ingresso.getSessao().getId());
-                    Lugar lugar = lugarDao.findOne(ingresso.getLugar().getId());
-                    TipoDeIngresso tipo = ingresso.getTipoDeIngresso();
-                    return new Ingresso(sessao, tipo, lugar);
-                }).collect(Collectors.toList());
+        return this.ingressos.stream().map(ingresso -> {
+            Sessao s = sessaoDao.findOne(ingresso.getSessao().getId());
+            Lugar l = lugarDao.findOne(ingresso.getLugar().getId());
+            TipoDeIngresso t = ingresso.getTipoDeIngresso();
+            return new Ingresso(s,t,l);
+        }).collect(Collectors.toList());
     }
 }

@@ -1,5 +1,23 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+
+@JoooooooooJ
+15
+5798caelum/fj22-ingressos
+Code Issues 0 Pull requests 0 Actions Projects 0 Wiki Security Insights
+fj22-ingressos/src/main/webapp/WEB-INF/views/lugar/lista.jsp
+@MathBrandino MathBrandino refatoracao do Lugar para Spring Security
+36227d4 on 16 Jun 2017
+@MathBrandino@fwfurtado
+Executable File  61 lines (59 sloc)  3.66 KB
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib tagdir="/WEB-INF/tags/" prefix="ingresso"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -8,19 +26,19 @@
 <ingresso:template>
 	<jsp:body>
 		<div class=" col-md-6 col-md-offset-3">
-		<h3>${sala.nome}</h3>
-		<table class="table-compra" id="lugares">
-			<tbody>
+			<h3>${sala.nome}</h3>
+			<table class="table-compra" id="lugares">
+				<tbody>
 				<c:forEach var="map" items="${sala.mapaDeLugares}">
 					<tr class="fileira">
 						<td class="fileira-valor">${map.key}</td>
 						<td class="fileira-assentos">
-						<table>
-							<tr>
-							<c:forEach var="lugar" items="${map.value}">
-								<td class="fileira-assento"><figure>
-										<svg class="assento ${sessao.isDisponivel(lugar) && !carrinho.isSelecionado(lugar) ? "disponivel" : "ocupado" }"
-											 onclick="${sessao.isDisponivel(lugar) && !carrinho.isSelecionado(lugar) ? 'changeCheckbox(this)' : '' }" version="1.0" id="SEAT" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+							<table>
+								<tr>
+									<c:forEach var="lugar" items="${map.value}">
+										<td class="fileira-assento"><figure>
+											<svg class="assento ${sessao.isDisponivel(lugar) && !carrinho.isSelecionado(lugar) ? "disponivel" : "ocupado" }"
+											onclick="${sessao.isDisponivel(lugar) && !carrinho.isSelecionado(lugar) ? 'changeCheckbox(this)' : '' }" version="1.0" id="SEAT" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 												 viewBox="0 0 318.224 305.246" enable-background="new 0 0 318.224 305.246" xml:space="preserve" width="20">
 											<g id="FILL">
 												<path d="M269.395,132.246h-15.02V51.414c0-11.758-9.492-21.248-21.248-21.248H85.097
@@ -29,7 +47,7 @@
 													c6.68,0,12.448-4.672,13.833-11.209l4.648-21.933l0.009,0.09h17.959c3.569,0,6.585-2.649,7.045-6.187l11.407-87.625
 													C284.522,139.751,277.931,132.246,269.395,132.246z"/>
 											</g>
-											<path id="STROKE" fill="#4F4F4F" d="M290.664,127.709c-5.374-6.118-13.126-9.628-21.269-9.628h-0.854V51.414
+												<path id="STROKE" fill="#4F4F4F" d="M290.664,127.709c-5.374-6.118-13.126-9.628-21.269-9.628h-0.854V51.414
 												c0-19.526-15.886-35.414-35.414-35.414H85.097c-19.528,0-35.414,15.888-35.414,35.414v66.667h-0.856
 												c-8.144,0-15.896,3.51-21.271,9.628c-5.374,6.121-7.852,14.262-6.799,22.338l11.406,87.625
 												c1.378,10.562,10.444,18.523,21.091,18.523h6.479l2.25,10.614c2.755,13,14.401,22.438,27.691,22.438h138.845
@@ -45,18 +63,18 @@
 												c1.681-2.082,4.185-3.272,6.854-3.272h155.634c2.67,0,5.174,1.19,6.854,3.272c1.688,2.075,2.338,4.773,1.785,7.394l-8.397,39.591
 											c-0.858,4.053-4.496,7-8.639,7H89.678C85.534,269.772,81.896,266.825,81.039,262.772z"/>
 										</svg>
-								    <figcaption>${lugar.posicao}</figcaption>
-								</figure></td>
-							</c:forEach>
-							</tr>
-						</table>
+											<figcaption>${lugar.posicao}</figcaption>
+										</figure></td>
+									</c:forEach>
+								</tr>
+							</table>
 					</tr>
 				</c:forEach>
-			</tbody>
-		</table>
-		<div class="col-md-6 col-md-offset-3">
-			<a href="/admin/lugar?salaId=${sala.id}" class="btn btn-block btn-info">Novo</a>
-		</div>
+				</tbody>
+			</table>
+			<div class="col-md-6 col-md-offset-3">
+				<a href="/admin/lugar?salaId=${sala.id}" class="btn btn-block btn-info">Novo</a>
+			</div>
 		</div>
 	</jsp:body>
 </ingresso:template>

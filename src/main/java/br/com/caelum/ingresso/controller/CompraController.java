@@ -6,11 +6,12 @@ import br.com.caelum.ingresso.model.Carrinho;
 import br.com.caelum.ingresso.model.form.CarrinhoForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class CompraController {
+public class CompraController{
     @Autowired
     private SessaoDao sessaoDao;
 
@@ -20,11 +21,19 @@ public class CompraController {
     @Autowired
     private Carrinho carrinho;
 
-    @PostMapping("/compra/ignressos")
-    public ModelAndView enviarPagamento(CarrinhoForm carrinhoForm){
-        ModelAndView mnv  = new ModelAndView("redirect: /compra");
+    @PostMapping("/compra/ingressos")
+    public ModelAndView enviarParaPagamento(CarrinhoForm carrinhoForm){
 
-        carrinhoForm.toIngressos(sessaoDao, lugarDao).forEach(carrinho::add);
+        ModelAndView mnv = new ModelAndView("redirect:/compra");
+        carrinhoForm.toIngressos(sessaoDao,lugarDao).forEach(carrinho::add);
+        return mnv;
+    }
+
+    @GetMapping("/compra")
+    public ModelAndView checkout(){
+        ModelAndView mnv = new ModelAndView("compra/pagamento");
+        mnv.addObject("carrinho",carrinho);
+
         return mnv;
     }
 }

@@ -25,7 +25,6 @@ public class Ingresso {
 
     /**
      * @deprecated hibernate only*/
-
     public Ingresso(){
 
     }
