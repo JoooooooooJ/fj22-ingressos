@@ -1,7 +1,5 @@
 package br.com.caelum.ingresso.model;
 
-import br.com.caelum.ingresso.model.descontos.Desconto;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 

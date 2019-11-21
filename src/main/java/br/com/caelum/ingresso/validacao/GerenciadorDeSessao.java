@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 
 import br.com.caelum.ingresso.model.Sessao;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 public class GerenciadorDeSessao {
 	
@@ -15,7 +17,7 @@ public class GerenciadorDeSessao {
 		this.sessoesDaSala = sessoesDaSala;
 	}
 	
-	private boolean horarioIsValido(Sessao sessaoExistente,Sessao sessaoAtual) {
+	private boolean horarioIsValido(Sessao sessaoExistente, Sessao sessaoAtual) {
 		
 		LocalDate hoje = LocalDate.now();
 		
@@ -32,12 +34,12 @@ public class GerenciadorDeSessao {
 	}
 	
 	public boolean cabe(Sessao sessaoAtual) {
-		Optional<Boolean> cabe = sessoesDaSala
+		 return sessoesDaSala
 				.stream()
 				.map(sessaoExistente -> horarioIsValido(sessaoExistente, sessaoAtual))
-				.reduce(Boolean::logicalAnd);
+				.reduce(Boolean::logicalAnd).orElse(true);
 		
-		return cabe.orElse(true);
+
 	}
 
 }

@@ -91,8 +91,7 @@ public class Sessao {
 		return sala.getMapaDeLugares();
 	}
 	public boolean isDisponivel(Lugar lugarSelecionado){
-		return ingressos.stream().map(Ingresso::getLugar).noneMatch(lugar-> lugar.equals(lugarSelecionado));
-	}
+		return ingressos.stream().map(Ingresso::getLugar).noneMatch(lugar-> lugar.equals(lugarSelecionado));	}
 
 	public void setIngressos(Set<Ingresso> ingressos) {
 		this.ingressos = ingressos;

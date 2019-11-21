@@ -1,6 +1,5 @@
 package br.com.caelum.ingresso.model;
 
-import java.time.Year;
 import java.time.YearMonth;
 
 public class Cartao {
