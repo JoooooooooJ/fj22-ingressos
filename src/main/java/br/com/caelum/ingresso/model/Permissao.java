@@ -1,10 +1,12 @@
 package br.com.caelum.ingresso.model;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Permissao {
+public class Permissao implements GrantedAuthority {
 
     @Id
     private String nome;
@@ -28,4 +30,8 @@ public class Permissao {
         this.nome = nome;
     }
 
+    @Override
+    public String getAuthority() {
+        return nome;
+    }
 }

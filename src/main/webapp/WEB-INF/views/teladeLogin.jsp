@@ -1,11 +1,10 @@
 <%--
   Created by IntelliJ IDEA.
-  User: nando
-  Date: 20/01/17
-  Time: 17:39
+  User: RYZEN 2600
+  Date: 22/11/2019
+  Time: 15:36
   To change this template use File | Settings | File Templates.
 --%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -44,8 +43,9 @@
 
                 <button class="btn btn-primary" type="submit">Entrar</button>
 
-                <a href="/usuario">ou cadastrar-se</a>
+                <a href="/usuario/request">ou cadastrar-se</a>
             </form>
         </div>
     </jsp:body>
 </ingresso:template>
+
