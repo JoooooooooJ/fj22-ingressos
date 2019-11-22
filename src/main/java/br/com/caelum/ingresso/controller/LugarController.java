@@ -23,10 +23,14 @@ import javax.validation.Valid;
 public class LugarController {
 
 
-    @Autowired
-    private SalaDao salaDao;
-    @Autowired
-    private LugarDao lugarDao;
+    private final SalaDao salaDao;
+
+    private final LugarDao lugarDao;
+
+    public LugarController(SalaDao salaDao, LugarDao lugarDao){
+        this.salaDao = salaDao;
+        this.lugarDao = lugarDao;
+    }
 
     @GetMapping("/admin/lugar")
     public ModelAndView form(@RequestParam("salaId") Integer salaId, LugarForm lugarDto) {

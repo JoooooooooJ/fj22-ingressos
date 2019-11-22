@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.caelum.ingresso.dao.LugarDao;
@@ -20,17 +21,20 @@ import javax.validation.Valid;
 @Controller
 public class CompraController {
 
-    @Autowired
-    private SessaoDao sessaoDao;
+    private final SessaoDao sessaoDao;
 
-    @Autowired
-    private LugarDao lugarDao;
+    private final LugarDao lugarDao;
 
-    @Autowired
-    private Carrinho carrinho;
+    private final Carrinho carrinho;
 
-    @Autowired
-    private CompraDao compraDao;
+    private final CompraDao compraDao;
+
+    public CompraController(SessaoDao sessaoDao, LugarDao lugarDao, Carrinho carrinho, CompraDao compraDao){
+        this.sessaoDao = sessaoDao;
+        this.lugarDao = lugarDao;
+        this.carrinho = carrinho;
+        this.compraDao = compraDao;
+    }
 
     @PostMapping("/compra/ingressos")
     public ModelAndView enviarParaPagamento(CarrinhoForm carrinhoForm){
@@ -61,7 +65,7 @@ public class CompraController {
             compraDao.save(carrinho.toCompra());
         }
         else{
-            result.rejectValue("vencimento", "Cartao Expirado!");
+            result.rejectValue("vencimento", "Vencimento inválido ");
             return checkout(cartao);
         }
         return mnv;

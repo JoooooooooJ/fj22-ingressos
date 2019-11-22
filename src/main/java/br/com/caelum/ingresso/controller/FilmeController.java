@@ -24,15 +24,17 @@ import java.util.Optional;
 public class FilmeController {
 
 
-    @Autowired
-    private FilmeDao filmeDao;
+    private final FilmeDao filmeDao;
 
-    @Autowired
-    private SessaoDao sessaoDao;
+    private final SessaoDao sessaoDao;
 
-    @Autowired
-    private ImdbClient client;
+    private final ImdbClient client;
 
+    public FilmeController(FilmeDao filmeDao, SessaoDao sessaoDao, ImdbClient client){
+        this.filmeDao = filmeDao;
+        this.sessaoDao = sessaoDao;
+        this.client = client;
+    }
 
     @GetMapping({"/admin/filme", "/admin/filme/{id}"})
     public ModelAndView form(@PathVariable("id") Optional<Integer> id, Filme filme){
@@ -65,7 +67,7 @@ public class FilmeController {
     }
 
 
-    @GetMapping(value="/admin/filmes")
+    @GetMapping("/admin/filmes")
     public ModelAndView lista(){
 
         ModelAndView modelAndView = new ModelAndView("filme/lista");
@@ -75,7 +77,7 @@ public class FilmeController {
         return modelAndView;
     }
 
-    @GetMapping(value="/filme/em-cartaz")
+    @GetMapping("/filme/em-cartaz")
     public ModelAndView emCartaz(){
         ModelAndView mnv = new ModelAndView("filme/em-cartaz");
 
@@ -85,7 +87,7 @@ public class FilmeController {
 
     }
 
-    @GetMapping(value="/filme/{id}/detalhe")
+    @GetMapping("/filme/{id}/detalhe")
     public ModelAndView detalhes(@PathVariable("id") Integer id){
         ModelAndView mnv = new ModelAndView("/filme/detalhe");
 

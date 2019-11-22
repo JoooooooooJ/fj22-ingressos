@@ -1,13 +1,10 @@
-package br.com.caelum.ingresso.validacao;
+package br.com.caelum.ingresso.validation;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 import br.com.caelum.ingresso.model.Sessao;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 public class GerenciadorDeSessao {
 	

@@ -1,11 +1,9 @@
 package br.com.caelum.ingresso.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
@@ -21,7 +19,7 @@ import br.com.caelum.ingresso.model.Sessao;
 import br.com.caelum.ingresso.model.TipoDeIngresso;
 import br.com.caelum.ingresso.model.form.SessaoForm;
 import br.com.caelum.ingresso.rest.ImdbClient;
-import br.com.caelum.ingresso.validacao.GerenciadorDeSessao;
+import br.com.caelum.ingresso.validation.GerenciadorDeSessao;
 
 
 
@@ -29,21 +27,23 @@ import br.com.caelum.ingresso.validacao.GerenciadorDeSessao;
 
 public class SessaoController {
 
-	@Autowired
-	private SalaDao salaDao;
+	private final SalaDao salaDao;
 
-	@Autowired
-	private FilmeDao filmeDao;
+	private final FilmeDao filmeDao;
 
-	@Autowired
-	private SessaoDao sessaoDao;
+	private final SessaoDao sessaoDao;
 
-	@Autowired
-	private ImdbClient client;
+	private final ImdbClient client;
 
-	@Autowired
-	private	Carrinho carrinho;
+	private	final Carrinho carrinho;
 
+	public SessaoController(SalaDao salaDao, FilmeDao filmeDao, SessaoDao sessaoDao, ImdbClient client, Carrinho carrinho){
+		this.salaDao = salaDao;
+		this.filmeDao = filmeDao;
+		this.sessaoDao = sessaoDao;
+		this.client = client;
+		this.carrinho = carrinho;
+	}
 
 	@GetMapping ("admin/sessao")
 	public ModelAndView form (@RequestParam("salaId") Integer salaId, SessaoForm form){
@@ -59,7 +59,7 @@ public class SessaoController {
 
 	}
 
-	@PostMapping(value = "/admin/sessao")
+	@PostMapping("/admin/sessao")
 	@Transactional
 	public ModelAndView salva(@Valid SessaoForm form, BindingResult result) {
 

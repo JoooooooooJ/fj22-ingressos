@@ -21,11 +21,16 @@ import java.util.Optional;
 @Controller
 public class SalaController {
 
-    @Autowired
-    private SalaDao salaDao;
+
+    private final SalaDao salaDao;
     
-    @Autowired
-    private SessaoDao sessaoDao;
+
+    private final SessaoDao sessaoDao;
+
+    public SalaController(SalaDao salaDao, SessaoDao sessaoDao){
+        this.salaDao = salaDao;
+        this.sessaoDao = sessaoDao;
+    }
 
 
     @GetMapping({"/admin/sala", "/admin/sala/{id}"})

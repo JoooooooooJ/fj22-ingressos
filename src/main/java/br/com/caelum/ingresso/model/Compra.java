@@ -19,6 +19,7 @@ public class Compra {
     public Compra(){
 
     }
+
     public Compra(List<Ingresso> ingressos) {
             this.ingressos = ingressos;
     }

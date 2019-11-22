@@ -1,21 +1,3 @@
-Skip to content
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
-
-@JoooooooooJ
-15
-5798caelum/fj22-ingressos
-Code Issues 0 Pull requests 0 Actions Projects 0 Wiki Security Insights
-fj22-ingressos/src/main/webapp/WEB-INF/views/lugar/lista.jsp
-@MathBrandino MathBrandino refatoracao do Lugar para Spring Security
-36227d4 on 16 Jun 2017
-@MathBrandino@fwfurtado
-Executable File  61 lines (59 sloc)  3.66 KB
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 		 pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -38,7 +20,7 @@ Executable File  61 lines (59 sloc)  3.66 KB
 									<c:forEach var="lugar" items="${map.value}">
 										<td class="fileira-assento"><figure>
 											<svg class="assento ${sessao.isDisponivel(lugar) && !carrinho.isSelecionado(lugar) ? "disponivel" : "ocupado" }"
-											onclick="${sessao.isDisponivel(lugar) && !carrinho.isSelecionado(lugar) ? 'changeCheckbox(this)' : '' }" version="1.0" id="SEAT" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+												 onclick="${sessao.isDisponivel(lugar) && !carrinho.isSelecionado(lugar) ? 'changeCheckbox(this)' : '' }" version="1.0" id="SEAT" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 												 viewBox="0 0 318.224 305.246" enable-background="new 0 0 318.224 305.246" xml:space="preserve" width="20">
 											<g id="FILL">
 												<path d="M269.395,132.246h-15.02V51.414c0-11.758-9.492-21.248-21.248-21.248H85.097
