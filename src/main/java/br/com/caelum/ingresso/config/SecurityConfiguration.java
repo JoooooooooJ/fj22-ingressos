@@ -1,5 +1,6 @@
 package br.com.caelum.ingresso.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,11 +15,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @ImportResource("/WEB-INF/spring-context.xml")
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private final UserDetailsService userDetailsService;
-
-    public SecurityConfiguration(UserDetailsService userDetailsService){
-        this.userDetailsService = userDetailsService;
-    }
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -29,7 +27,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .antMatchers("/usuario/**").permitAll()
                     .antMatchers("/filme/**").permitAll()
                     .antMatchers("/sessao/**/lugares").permitAll()
-                    .antMatchers("/magic/**").permitAll()
                     .antMatchers("/").permitAll()
                     .antMatchers("/login/").permitAll()
                     .anyRequest()
@@ -37,7 +34,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                     .formLogin()
                         .usernameParameter("email")
-                        .loginPage("/teladeLogin")
+                        .loginPage("/login")
                         .permitAll()
                 .and()
                     .logout()
@@ -47,8 +44,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring()
+    public void configure(WebSecurity webSecurity) throws Exception {
+        webSecurity.ignoring()
                 .antMatchers("/assets/**")
         ;
     }
@@ -57,7 +54,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception{
         authenticationManagerBuilder
                 .userDetailsService(userDetailsService)
-                .passwordEncoder(new BCryptPasswordEncoder());
+                .passwordEncoder(new BCryptPasswordEncoder())
+        ;
     }
 
 }

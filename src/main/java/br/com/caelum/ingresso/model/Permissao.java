@@ -11,6 +11,9 @@ public class Permissao implements GrantedAuthority {
     @Id
     private String nome;
 
+    public static Permissao COMPRADOR = new Permissao("ROLE_COMPRADOR");
+    public static Permissao ADMIN = new Permissao("ROLE_ADMIN");
+
     public Permissao(String nome) {
         this.nome = nome;
     }
