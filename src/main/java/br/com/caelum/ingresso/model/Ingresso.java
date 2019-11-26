@@ -35,23 +35,54 @@ public class Ingresso {
     }
 
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Sessao getSessao() {
         return sessao;
     }
 
-    public BigDecimal getPreco() {
-        return preco;
-    }
-
-    public Integer getId() {
-        return id;
+    public void setSessao(Sessao sessao) {
+        this.sessao = sessao;
     }
 
     public Lugar getLugar() {
         return lugar;
     }
 
+    public void setLugar(Lugar lugar) {
+        this.lugar = lugar;
+    }
+
+    public BigDecimal getPreco() {
+        return preco;
+    }
+
+    public BigDecimal getPrecoComDesconto(){
+        return tipoDeIngresso.aplicaDesconto(preco);
+    }
+
+    public BigDecimal getValorDeDesconto(){
+
+        BigDecimal desconto = getPrecoComDesconto();
+
+        return preco.subtract(desconto);
+    }
+
+    public void setPreco(BigDecimal preco) {
+        this.preco = preco;
+    }
+
     public TipoDeIngresso getTipoDeIngresso() {
         return tipoDeIngresso;
+    }
+
+    public void setTipoDeIngresso(TipoDeIngresso tipoDeIngresso) {
+        this.tipoDeIngresso = tipoDeIngresso;
     }
 }

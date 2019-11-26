@@ -23,7 +23,7 @@ public class SalaController {
 
 
     private final SalaDao salaDao;
-    
+
 
     private final SessaoDao sessaoDao;
 

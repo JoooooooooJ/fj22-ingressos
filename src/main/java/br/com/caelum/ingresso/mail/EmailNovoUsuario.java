@@ -27,7 +27,7 @@ public class EmailNovoUsuario implements Email {
 
     @Override
     public String getSubject() {
-        return "Cadastro Sistema de ingressos";
+        return "Ingresso - Confirmação de cadastro";
     }
 
     public String makeURL(){

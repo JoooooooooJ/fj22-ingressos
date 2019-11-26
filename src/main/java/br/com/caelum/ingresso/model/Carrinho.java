@@ -13,6 +13,13 @@ public class Carrinho {
 
     private List<Ingresso> ingressos = new ArrayList<>();
 
+    public Carrinho() {
+    }
+
+    public Carrinho(List<Ingresso> ingressos) {
+        this.ingressos = ingressos;
+    }
+
     public void add(Ingresso ingresso){
         ingressos.add(ingresso);
     }
