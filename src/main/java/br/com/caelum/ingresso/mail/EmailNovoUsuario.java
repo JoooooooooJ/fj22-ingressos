@@ -31,6 +31,6 @@ public class EmailNovoUsuario implements Email {
     }
 
     public String makeURL(){
-        return String.format("http://localhost:8080/usuario/validade?uuid=%s", token.getUserId());
+        return String.format("http://localhost:8080/usuario/validate?uuid=%s", token.getUserId());
     }
 }

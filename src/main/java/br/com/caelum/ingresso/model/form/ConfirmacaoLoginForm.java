@@ -50,18 +50,22 @@ public class ConfirmacaoLoginForm {
     }
 
    public Usuario toUsuario(UsuarioDao usuarioDao, PasswordEncoder encoder){
-        String encriptedPassword = encoder.encode(this.password);
 
-        Usuario usuario = usuarioDao.findByEmail(token.getEmail()).orElse(novoUsuario(token.getEmail(), encriptedPassword));
+       String encriptedPassword = encoder.encode(this.password);
 
-        usuario.setSenha(encriptedPassword) ;
+       String email = token.getEmail();
 
-        return usuario;
+       Usuario usuario= usuarioDao.findByEmail(email).orElse(novoUsuario(email, encriptedPassword));
+
+       usuario.setSenha(encriptedPassword);
+
+       return usuario;
     }
 
-    private Usuario novoUsuario(String email, String encriptedPassword) {
+    private Usuario novoUsuario(String email, String password) {
         Set<Permissao> permissoes = new HashSet<>();
         permissoes.add(Permissao.COMPRADOR);
+
         return new Usuario(email, password, permissoes);
     }
 }

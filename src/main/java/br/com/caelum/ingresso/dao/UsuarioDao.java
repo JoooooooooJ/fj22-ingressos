@@ -14,15 +14,15 @@ public class UsuarioDao {
     private EntityManager entityManager;
 
     public void save(Usuario usuario){
-        if(usuario.getId() == null){
-            entityManager.persist(usuario);
-        }else
-            entityManager.merge(usuario);
+       if(usuario.getId()==null)
+           entityManager.persist(usuario);
+       else
+           entityManager.merge(usuario);
     }
 
     public Optional<Usuario> findByEmail(String email){
         return entityManager
-                .createQuery("select u from Usuario u where u.email =: email", Usuario.class)
+                .createQuery("select u from Usuario u where u.email = :email", Usuario.class)
                 .setParameter("email", email)
                 .getResultList()
                 .stream()

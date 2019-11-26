@@ -26,6 +26,13 @@ public class Usuario implements UserDetails {
         this.permisoses = permisoses;
     }
 
+    /**
+     * @deprecated hibernate only
+     * */
+    public Usuario() {
+
+    }
+
     public Integer getId() {
         return id;
     }

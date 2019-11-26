@@ -71,6 +71,7 @@ public class UsuarioController {
     }
 
     @PostMapping("usuario/cadastrar")
+    @Transactional
     public ModelAndView cadastrar(ConfirmacaoLoginForm confirmacaoLoginForm){
         ModelAndView mnv = new ModelAndView("redirect:/login");
 

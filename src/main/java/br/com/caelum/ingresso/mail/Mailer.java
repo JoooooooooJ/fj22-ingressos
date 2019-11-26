@@ -25,6 +25,7 @@ public class Mailer {
             messageHelper.setTo(email.getTo());
             messageHelper.setSubject(email.getSubject());
             messageHelper.setText(email.getBody(), true);
+            javaMailSender.send(message);
         } catch (MessagingException e) {
             throw new IllegalArgumentException(e);
         }

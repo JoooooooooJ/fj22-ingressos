@@ -18,7 +18,7 @@ public class TokenDao
     }
     public Optional<Token> findByUuid(String uuid){
         return entityManager
-                .createQuery("select t from Token t where t.uuid =: uuid", Token.class)
+                .createQuery("select t from Token t where t.uuid = :uuid", Token.class)
                 .setParameter("uuid", uuid)
                 .getResultList()
                 .stream()
